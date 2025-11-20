@@ -29,7 +29,6 @@
     </div>
 </div>
 <div class="container-fluid pt-2" id="container"></div>
-<div id="watermark"></div>
 <script>
     (async function () {
         try {

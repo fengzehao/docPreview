@@ -12,7 +12,7 @@ docPreview 是基于Java 25 + Spring Boot 4.0 开发的文件预览解决方案�
 * 图片文件：直接通过 FTL 模板适配移动端渲染
 
 ## 技术栈
-* 核心框架：Spring Boot 4.0.0-RC2
+* 核心框架：Spring Boot 4.0.0
 * PDF 处理：Apache PDFBox
 * 模板渲染：FreeMarker (FTL)
 * 开发语言：Java 25
