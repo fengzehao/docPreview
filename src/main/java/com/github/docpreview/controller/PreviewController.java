@@ -14,6 +14,10 @@ public class PreviewController {
             model.addAttribute("url", url);
             model.addAttribute("type", fileType);
             return "img";
+        } else if ("pdf".equals(fileType)) {
+            model.addAttribute("url", url);
+            model.addAttribute("type", fileType);
+            return "pdf";
         } else {
             model.addAttribute("error", "该文件类型暂不支持预览");
             return "error";

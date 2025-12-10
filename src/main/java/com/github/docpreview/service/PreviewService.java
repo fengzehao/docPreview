@@ -1,8 +1,10 @@
 package com.github.docpreview.service;
 
+import com.github.docpreview.model.ConvertResult;
+
 public interface PreviewService {
 
-    int convertPdfToImg(String url);
+    ConvertResult convertPdfToImg(String url);
 
     String download(String url, String type);
 }
