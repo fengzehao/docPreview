@@ -1,6 +1,7 @@
 package com.github.docpreview.service.impl;
 
 import com.github.docpreview.config.ConfigUtils;
+import com.github.docpreview.model.ConvertResult;
 import com.github.docpreview.service.PreviewService;
 import org.apache.pdfbox.Loader;
 import org.apache.pdfbox.pdmodel.PDDocument;
@@ -33,14 +34,14 @@ public class PreviewServiceImpl implements PreviewService {
     }
 
     @Override
-    public int convertPdfToImg(String url) {
+    public ConvertResult convertPdfToImg(String url) {
         String md5 = DigestUtils.md5DigestAsHex(url.getBytes(StandardCharsets.UTF_8));
         String folderPath = ConfigUtils.getFilePath() + md5;
         File folder = new File(folderPath);
         if (folder.exists() && folder.isDirectory()) {
             String[] files = folder.list();
             if (files != null) {
-                return files.length;
+                return new ConvertResult(md5, files.length);
             }
         }
         if (!folder.mkdirs()) {
@@ -57,7 +58,7 @@ public class PreviewServiceImpl implements PreviewService {
                 BufferedImage image = renderer.renderImageWithDPI(i, 160);
                 ImageIO.write(image, "JPG", new File(folderPath + File.separator + i + ".jpg"));
             }
-            return pageCount;
+            return new ConvertResult(md5, pageCount);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } finally {
